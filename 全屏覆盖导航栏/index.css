@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    height: 100vh;
+    line-height: 80px;
+    /*字体间距*/
+    letter-spacing: 15px;
+}
+
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*线性渐变*/
+    /*渐变轴为45度，从#ec77ab渐变到#7873f5*/
+    background: linear-gradient(200deg, #ec77ab, #7873f5);
+    /*circle()可以传人2个可选参数；*/
+    /*1. 圆的半径，默认元素宽高中短的那个为直径，支持百分比*/
+    /*2. 圆心位置，默认为元素中心点*/
+    /*25px: 圆的直接径:*/
+    /*calc(100% - 45px) 45px:  圆心点*/
+    clip-path: circle(25px at calc(100% - 45px) 45px);
+    /*ease-in-out	规定以慢速开始和结束的过渡效果*/
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 2;
+    background: linear-gradient(200deg, #ec77ba, #7873f5);
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wrapper ul {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+}
+
+.wrapper ul li {
+    width: 200px;
+    margin: 30px 0;
+}
+
+
+.wrapper ul li a {
+    display: inline-block;
+    width: 100%;
+    color: #fff;
+    /*取消下划线*/
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 700;
+    position: relative;
+    line-height: 50px;
+}
+
+.wrapper ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    z-index: -1;
+    left: 0;
+    border-radius: 50px;
+    transform: scaleY(0);
+    /*ease	规定慢速开始，然后变快，然后慢速结束的过渡效果*/
+    transition: transform 0.3s ease;
+}
+
+.wrapper ul li a:hover::after {
+    transform: scaleY(1);
+}
+
+.wrapper ul li a:hover {
+    color: #ec77ba;
+}
+
+#menu_btn {
+    display: none;
+}
+
+#menu_btn:checked ~ .wrapper {
+    /*将元素剪切一个圆形 直径75%*/
+    clip-path: circle(75%);
+}
+
+#menu_btn:checked ~ .menu-btn {
+    background: #fff;
+    color: #ec77ba;
+}
+#menu_btn:checked ~ .menu-btn i:before {
+    content: '\f00d';
+}
+
+
+
+
+
+
