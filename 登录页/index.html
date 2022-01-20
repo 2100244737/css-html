@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="../js/jquery.js"></script>
+</head>
+<body>
+ <div class="container">
+     <h1>login</h1>
+     <form action="">
+         <input type="text" class="tbx" placeholder="账号">
+         <input type="password" class="tbx" placeholder="密码">
+         <input type="submit" class="sub" value="登录">
+     </form>
+ </div>
+ <script>
+     const con = document.querySelector('.container')
+     let isIn = true;
+     let inOut = false;
+     var span;
+     con.addEventListener('mouseenter',e => {
+         console.log(e.clientX,'33');
+         if(isIn) {
+
+             // 获取鼠标位置
+             // 元素位置 = 进入点离窗口距离 - 父级盒子距窗口距离
+             let inX = e.clientX - e.target.offsetLeft
+             let inY = e.clientY - e.target.offsetTop
+             console.log(inY,'inY');
+             console.log(inX,'inX');
+             // 创建span 元素
+             let el = document.createElement('span')
+             el.style.left = inX + 'px'
+             el.style.top = inY + 'px'
+             con.appendChild(el)
+            $('.container span').removeClass('out')
+            $('.container span').addClass('in')
+             span = document.querySelector('.container span')
+             isIn = false
+             inOut = true
+         }
+     })
+     con.addEventListener('mouseleave', e => {
+         let inX = e.clientX - e.target.offsetLeft
+         let inY = e.clientY - e.target.offsetTop
+
+         $('.container span').removeClass('in')
+         $('.container span').addClass('out')
+         $('.out').css('top',inY+'px')
+         $('.out').css('left',inX+'px')
+
+         inOut = false
+         setTimeout(()=> {
+             con.removeChild(span)
+             isIn = true
+         },500)
+     })
+ </script>
+</body>
+</html>
